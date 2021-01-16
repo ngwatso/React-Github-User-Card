@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 
-import UserCard from "./components/UserCard";
+// import UserCard from "./components/UserCard";
 
 class App extends React.Component {
 	//  TODO Set up constructor to store state
@@ -11,7 +11,7 @@ class App extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { userInfo: [], user: "", newUser: "" };
+		this.state = { userInfo: [], user: "ngwatso", newUser: "ngwatso" };
 	}
 
 	// TODO Mount component and do axios pull
@@ -20,7 +20,7 @@ class App extends React.Component {
 			.then((res) => {
 				console.log(
 					`nw: App.js: componentDidMount: axiosGet: res:`,
-					res.data
+					res.data.avatar_url
 				);
 			})
 			.catch((err) => console.error(`ERROR RETRIEVING DATA`, err));
@@ -54,13 +54,23 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<h1>Github</h1>
-				<input
+				<h1>{`Github User Id - ${this.state.user}`}</h1>
+				{/* <input
 					value={this.state.newUser}
 					onChange={this.handleChange}
 				/>
-				<button onClick={this.handleClick}>Find User</button>
-				<UserCard userInfo={this.state.userInfo} />
+				<button onClick={this.handleClick}>Find User</button> */}
+				{/* <UserCard userInfo={this.state.userInfo} /> */}
+				{this.state.userInfo.map((user) => {
+					return (
+						<div key={user}>
+							<img
+								src={user.avatar_url}
+								alt={user.login}
+							/>
+						</div>
+					);
+				})}
 			</>
 		);
 	}

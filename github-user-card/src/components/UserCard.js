@@ -1,10 +1,12 @@
-import React from "react";
-import "./App.css";
+// import React from "react";
+// import "./App.css";
 
-const UserCard = (props) => {
-  return (
-    <div className="user-card"
-  )
-}
+// const UserCard = (props) => {
+//   return (
+//     <div className="user-card">
 
-export default UserCard;
+//     </div>
+//   )
+// }
+
+// export default UserCard;

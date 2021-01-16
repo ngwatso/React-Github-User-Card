@@ -20,24 +20,29 @@ class App extends React.Component {
 			.then((res) => {
 				console.log(
 					`nw: App.js: componentDidMount: axiosGet: res:`,
-					res.data.avatar_url
+					res.data
 				);
+				this.setState({ userInfo: [res.data] });
 			})
 			.catch((err) => console.error(`ERROR RETRIEVING DATA`, err));
 	}
 
 	// TODO Update component on state change
-	componentDidUpdate(prevState) {
-		if (prevState.user !== this.state.user) {
-			axios.get(`https://api.github.com/users/${this.state.user}`)
-				.then((res) => {
-					this.state({ userInfo: res.data });
-				})
-				.catch((err) =>
-					console.error(`USERNAME DOES NOT EXIST`, err)
-				);
-		}
-	}
+	// componentDidUpdate(prevState) {
+	// 	if (prevState.user !== this.state.user) {
+	// 		axios.get(`https://api.github.com/users/${this.state.user}`)
+	// 			.then((res) => {
+	// 				console.log(
+	// 					`NW: APP.js: CDU: this.state.userInfo`,
+	// 					res.data
+	// 				);
+	// 				this.state({ userInfo: res.data });
+	// 			})
+	// 			.catch((err) =>
+	// 				console.error(`USERNAME DOES NOT EXIST`, err)
+	// 			);
+	// 	}
+	// }
 
 	// TODO Click handler
 	handleClick = (e) => {
@@ -63,7 +68,7 @@ class App extends React.Component {
 				{/* <UserCard userInfo={this.state.userInfo} /> */}
 				{this.state.userInfo.map((user) => {
 					return (
-						<div key={user}>
+						<div key={user.id}>
 							<img
 								src={user.avatar_url}
 								alt={user.login}

@@ -8,12 +8,12 @@ class Followers extends React.Component {
 		this.state = { followers: [] };
 	}
 
-	// // TODO Mount component
+	// TODO Mount component
 	componentDidMount() {
 		axios.get("https://api.github.com/users/ngwatso/followers")
 			.then((res) => {
 				console.log(`NW: Followers.js: CDM: res:`, res.data);
-				this.setState({ followers: [res.data] });
+				this.setState({ followers: res.data });
 			})
 			.catch((err) => console.error(`FOLLOWERS NOT FOUND`, err));
 	}
@@ -21,7 +21,7 @@ class Followers extends React.Component {
 	render() {
 		return (
 			<>
-				{/* <h2>"Followers"</h2> */}
+				<h2>Followers</h2>
 				{/* {props.user.map((follower) => { */}
 				{this.state.followers.map((follower) => {
 					return (
@@ -30,20 +30,16 @@ class Followers extends React.Component {
 								src={follower.avatar_url}
 								alt={follower.login}
 							/>
-							<div className="name">
-								Name: {follower.name}
+							<div className="user-id">
+								User Id: {follower.login}
 							</div>
-							<div className="location">
-								Location: {follower.location}
+							<div className="home-page">
+								{`${follower.login}'s Homepage: `}
+								{follower.html_url}
 							</div>
-							<div className="bio">
-								Bio: {follower.bio}
-							</div>
-							<div className="following">
-								Following: {follower.following}
-							</div>
-							<div className="followers">
-								Followers: {follower.followers}
+							<div className="repos">
+								{`${follower.login}'s Repos: `}{" "}
+								{follower.repos_url}
 							</div>
 						</div>
 					);

@@ -80,13 +80,21 @@ class App extends React.Component {
 								Location: {user.location}
 							</div>
 							<div className="bio">Bio: {user.bio}</div>
+							<div className="user-home">
+								{`${user.login}'s Homepage: `}
+								{user.html_url}
+							</div>
+							<div className="user-repos">
+								{`${user.login}'s Repos: `}
+								{user.repos_url}
+							</div>
 							<div className="following">
 								Following: {user.following}
 							</div>
 							<div className="followers">
 								Followers: {user.followers}
 							</div>
-							<Followers />
+							<Followers key={user.followers.id} />
 						</div>
 					);
 				})}

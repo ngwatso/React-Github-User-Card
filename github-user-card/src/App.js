@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 
+import Followers from "./components/Followers";
+
 // import UserCard from "./components/UserCard";
 
 class App extends React.Component {
@@ -73,6 +75,18 @@ class App extends React.Component {
 								src={user.avatar_url}
 								alt={user.login}
 							/>
+							<div className="name">Name: {user.name}</div>
+							<div className="location">
+								Location: {user.location}
+							</div>
+							<div className="bio">Bio: {user.bio}</div>
+							<div className="following">
+								Following: {user.following}
+							</div>
+							<div className="followers">
+								Followers: {user.followers}
+							</div>
+							<Followers />
 						</div>
 					);
 				})}

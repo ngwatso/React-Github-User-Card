@@ -21,29 +21,38 @@ class Followers extends React.Component {
 	render() {
 		return (
 			<>
-				<h2>Followers</h2>
-				{/* {props.user.map((follower) => { */}
-				{this.state.followers.map((follower) => {
-					return (
-						<div key={follower.id}>
-							<img
-								src={follower.avatar_url}
-								alt={follower.login}
-							/>
-							<div className="user-id">
-								User Id: {follower.login}
+				<div className="container-follower">
+					<h2>Followers</h2>
+					{/* {props.user.map((follower) => { */}
+					{this.state.followers.map((follower) => {
+						return (
+							<div
+								key={follower.id}
+								className="follower-img-info"
+							>
+								<div className="follower-img">
+									<img
+										src={follower.avatar_url}
+										alt={follower.login}
+									/>
+								</div>
+								<div className="follower-info">
+									<div className="user-id">
+										User Id: {follower.login}
+									</div>
+									<div className="home-page">
+										{`${follower.login}'s Homepage: `}
+										{follower.html_url}
+									</div>
+									<div className="repos">
+										{`${follower.login}'s Repos: `}{" "}
+										{follower.repos_url}
+									</div>
+								</div>
 							</div>
-							<div className="home-page">
-								{`${follower.login}'s Homepage: `}
-								{follower.html_url}
-							</div>
-							<div className="repos">
-								{`${follower.login}'s Repos: `}{" "}
-								{follower.repos_url}
-							</div>
-						</div>
-					);
-				})}
+						);
+					})}
+				</div>
 			</>
 		);
 	}

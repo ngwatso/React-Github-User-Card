@@ -61,43 +61,53 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<h1>{`Github User Id - ${this.state.user}`}</h1>
-				{/* <input
+				<div className="container">
+					<h1>{`Github User Id - ${this.state.user}`}</h1>
+					{/* <input
 					value={this.state.newUser}
 					onChange={this.handleChange}
 				/>
 				<button onClick={this.handleClick}>Find User</button> */}
-				{/* <UserCard userInfo={this.state.userInfo} /> */}
-				{this.state.userInfo.map((user) => {
-					return (
-						<div key={user.id}>
-							<img
-								src={user.avatar_url}
-								alt={user.login}
-							/>
-							<div className="name">Name: {user.name}</div>
-							<div className="location">
-								Location: {user.location}
+					{/* <UserCard userInfo={this.state.userInfo} /> */}
+					{this.state.userInfo.map((user) => {
+						return (
+							<div key={user.id} className="user-img-info">
+								<div className="img">
+									<img
+										src={user.avatar_url}
+										alt={user.login}
+									/>
+								</div>
+								<div className="user-info">
+									<div className="name">
+										Name: {user.name}
+									</div>
+									<div className="location">
+										Location: {user.location}
+									</div>
+									<div className="bio">
+										Bio: {user.bio}
+									</div>
+									<div className="user-home">
+										{`${user.login}'s Homepage: `}
+										{user.html_url}
+									</div>
+									<div className="user-repos">
+										{`${user.login}'s Repos: `}
+										{user.repos_url}
+									</div>
+									<div className="following">
+										Following: {user.following}
+									</div>
+									<div className="followers">
+										Followers: {user.followers}
+									</div>
+								</div>
+								<Followers key={user.followers.id} />
 							</div>
-							<div className="bio">Bio: {user.bio}</div>
-							<div className="user-home">
-								{`${user.login}'s Homepage: `}
-								{user.html_url}
-							</div>
-							<div className="user-repos">
-								{`${user.login}'s Repos: `}
-								{user.repos_url}
-							</div>
-							<div className="following">
-								Following: {user.following}
-							</div>
-							<div className="followers">
-								Followers: {user.followers}
-							</div>
-							<Followers key={user.followers.id} />
-						</div>
-					);
-				})}
+						);
+					})}
+				</div>
 			</>
 		);
 	}

@@ -14,12 +14,13 @@ class App extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { userInfo: [], user: "ngwatso", newUser: "ngwatso" };
+		// this.state = { userInfo: [], user: "", newUser: "" };
+		this.state = { userInfo: [] };
 	}
 
 	// TODO Mount component and do axios pull
 	componentDidMount() {
-		axios.get("https://api.github.com/users/ngwatso")
+		axios.get(`https://api.github.com/users/ngwatso`)
 			.then((res) => {
 				console.log(
 					`nw: App.js: componentDidMount: axiosGet: res:`,
@@ -30,8 +31,8 @@ class App extends React.Component {
 			.catch((err) => console.error(`ERROR RETRIEVING DATA`, err));
 	}
 
-	// TODO Update component on state change
-	// componentDidUpdate(prevState) {
+	// // TODO Update component on state change
+	// componentDidUpdate(prevProps, prevState) {
 	// 	if (prevState.user !== this.state.user) {
 	// 		axios.get(`https://api.github.com/users/${this.state.user}`)
 	// 			.then((res) => {
@@ -65,10 +66,10 @@ class App extends React.Component {
 				<h1>{`Github User Id - ${this.state.user}`}</h1>
 				<div className="container-user">
 					{/* <input
-					value={this.state.newUser}
-					onChange={this.handleChange}
-				/>
-				<button onClick={this.handleClick}>Find User</button> */}
+						value={this.state.newUser}
+						onChange={this.handleChange}
+					/> */}
+					{/* <button onClick={this.handleClick}>Find User</button> */}
 					{/* <UserCard userInfo={this.state.userInfo} /> */}
 					{this.state.userInfo.map((user) => {
 						return (

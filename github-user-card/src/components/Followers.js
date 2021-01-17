@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // const Followers = (props) => {
 class Followers extends React.Component {
@@ -11,7 +11,7 @@ class Followers extends React.Component {
 
 	// TODO Mount component
 	componentDidMount() {
-		axios.get("https://api.github.com/users/ngwatso/followers")
+		axios.get(`https://api.github.com/users/ngwatso/followers`)
 			.then((res) => {
 				console.log(`NW: Followers.js: CDM: res:`, res.data);
 				this.setState({ followers: res.data });
@@ -24,7 +24,8 @@ class Followers extends React.Component {
 			<>
 				<h2>Followers</h2>
 				<div className="container-follower">
-					{/* {props.user.map((follower) => { */}
+					{/* {props.userInfo.map((follower) => { */}
+
 					{this.state.followers.map((follower) => {
 						return (
 							<div

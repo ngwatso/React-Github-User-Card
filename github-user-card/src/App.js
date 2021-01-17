@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import Followers from "./components/Followers";
 
@@ -61,8 +62,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<div className="container">
-					<h1>{`Github User Id - ${this.state.user}`}</h1>
+				<h1>{`Github User Id - ${this.state.user}`}</h1>
+				<div className="container-user">
 					{/* <input
 					value={this.state.newUser}
 					onChange={this.handleChange}
@@ -72,7 +73,7 @@ class App extends React.Component {
 					{this.state.userInfo.map((user) => {
 						return (
 							<div key={user.id} className="user-img-info">
-								<div className="img">
+								<div className="user-img">
 									<img
 										src={user.avatar_url}
 										alt={user.login}
@@ -90,11 +91,19 @@ class App extends React.Component {
 									</div>
 									<div className="user-home">
 										{`${user.login}'s Homepage: `}
-										{user.html_url}
+										<Router>
+											<a href={user.html_url}>
+												{user.html_url}
+											</a>
+										</Router>
 									</div>
 									<div className="user-repos">
 										{`${user.login}'s Repos: `}
-										{user.repos_url}
+										<Router>
+											<a href={user.repos_url}>
+												{user.repos_url}
+											</a>
+										</Router>
 									</div>
 									<div className="following">
 										Following: {user.following}
@@ -103,10 +112,10 @@ class App extends React.Component {
 										Followers: {user.followers}
 									</div>
 								</div>
-								<Followers key={user.followers.id} />
 							</div>
 						);
 					})}
+					<Followers />
 				</div>
 			</>
 		);

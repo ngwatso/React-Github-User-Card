@@ -98,10 +98,12 @@ class App extends React.Component {
 										</Router>
 									</div>
 									<div className="user-repos">
-										{`${user.login}'s Repos: `}
+										{`${user.login}'s Repositories: `}
 										<Router>
-											<a href={user.repos_url}>
-												{user.repos_url}
+											<a
+												href={`https://github.com/${user.login}?tab=repositories`}
+											>
+												{`https://github.com/${user.login}/repos`}
 											</a>
 										</Router>
 									</div>

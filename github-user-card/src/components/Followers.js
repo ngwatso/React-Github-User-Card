@@ -45,25 +45,23 @@ class Followers extends React.Component {
 									<div className="home-page">
 										{`${follower.login}'s Homepage: `}
 										<Router>
-											<Link
-												to={
+											<a
+												href={
 													follower.html_url
 												}
 											>
 												{follower.html_url}
-											</Link>
+											</a>
 										</Router>
 									</div>
 									<div className="repos">
-										{`${follower.login}'s Repos: `}
+										{`${follower.login}'s Repositories: `}
 										<Router>
-											<Link
-												to={
-													follower.repos_url
-												}
+											<a
+												href={`https://github.com/${follower.login}?tab=repositories`}
 											>
-												{follower.repos_url}
-											</Link>
+												{`https://github.com/${follower.login}/repos`}
+											</a>
 										</Router>
 									</div>
 								</div>

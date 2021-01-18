@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -9,15 +9,24 @@ class Followers extends React.Component {
 		this.state = { followers: [] };
 	}
 
-	// TODO Mount component
+	// // TODO Mount component
 	componentDidMount() {
-		axios.get(`https://api.github.com/users/ngwatso/followers`)
+		axios.get(`https://api.github.com/ngwatso/followers`)
 			.then((res) => {
 				console.log(`NW: Followers.js: CDM: res:`, res.data);
 				this.setState({ followers: res.data });
 			})
 			.catch((err) => console.error(`FOLLOWERS NOT FOUND`, err));
 	}
+
+	// handleChanges = (e) => {
+	// 	this.setState({ followers: e.target.value });
+	// };
+
+	// handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	this.props.userInfo(this.state.followers);
+	// };
 
 	render() {
 		return (

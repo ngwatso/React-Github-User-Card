@@ -14,13 +14,13 @@ class App extends React.Component {
 
 	constructor() {
 		super();
-		// this.state = { userInfo: [], user: "", newUser: "" };
-		this.state = { userInfo: [] };
+		this.state = { userInfo: [], user: "ngwatso", newUser: "ngwatso" };
+		// this.state = { userInfo: [] };
 	}
 
 	// TODO Mount component and do axios pull
 	componentDidMount() {
-		axios.get(`https://api.github.com/users/ngwatso`)
+		axios.get(`https://api.github.com/users/${this.state.user}`)
 			.then((res) => {
 				console.log(
 					`nw: App.js: componentDidMount: axiosGet: res:`,
@@ -31,27 +31,22 @@ class App extends React.Component {
 			.catch((err) => console.error(`ERROR RETRIEVING DATA`, err));
 	}
 
-	// // TODO Update component on state change
-	// componentDidUpdate(prevProps, prevState) {
-	// 	if (prevState.user !== this.state.user) {
-	// 		axios.get(`https://api.github.com/users/${this.state.user}`)
-	// 			.then((res) => {
-	// 				console.log(
-	// 					`NW: APP.js: CDU: this.state.userInfo`,
-	// 					res.data
-	// 				);
-	// 				this.state({ userInfo: res.data });
-	// 			})
-	// 			.catch((err) =>
-	// 				console.error(`USERNAME DOES NOT EXIST`, err)
-	// 			);
-	// 	}
-	// }
-
-	// TODO Click handler
-	handleClick = (e) => {
-		this.setState({ newUser: e.target.value });
-	};
+	// TODO Update component on state change
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.user !== this.state.user) {
+			axios.get(`https://api.github.com/users/${this.state.user}`)
+				.then((res) => {
+					console.log(
+						`NW: APP.js: CDU: this.state.userInfo`,
+						res.data
+					);
+					this.setState({ userInfo: [res.data] });
+				})
+				.catch((err) =>
+					console.error(`USERNAME DOES NOT EXIST`, err)
+				);
+		}
+	}
 
 	// TODO Change handler
 	handleChange = (e) => {
@@ -60,16 +55,21 @@ class App extends React.Component {
 		});
 	};
 
+	// TODO Click handler
+	handleClick = (e) => {
+		this.setState({ user: this.state.newUser });
+	};
+
 	render() {
 		return (
 			<>
-				<h1>{`Github User Id - ${this.state.user}`}</h1>
+				<h1>{`Github User Id - ${this.state.newUser}`}</h1>
 				<div className="container-user">
-					{/* <input
+					<input
 						value={this.state.newUser}
 						onChange={this.handleChange}
-					/> */}
-					{/* <button onClick={this.handleClick}>Find User</button> */}
+					/>
+					<button onClick={this.handleClick}>Find User</button>
 					{/* <UserCard userInfo={this.state.userInfo} /> */}
 					{this.state.userInfo.map((user) => {
 						return (

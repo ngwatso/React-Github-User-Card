@@ -5,17 +5,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Followers from "./components/Followers";
 
-// import UserCard from "./components/UserCard";
-
 class App extends React.Component {
 	//  TODO Set up constructor to store state
 
-	// state = { userInfo: [], newUser: "", user: "" };
-
 	constructor() {
 		super();
-		this.state = { userInfo: [], user: "ngwatso", newUser: "ngwatso" };
-		// this.state = { userInfo: [] };
+		this.state = { userInfo: [], user: "", newUser: "" };
 	}
 
 	// TODO Mount component and do axios pull
@@ -40,7 +35,6 @@ class App extends React.Component {
 
 	// TODO Click handler
 	handleClick = (e) => {
-		// e.preventDefault();
 		this.setState({ user: this.state.newUser });
 	};
 
@@ -66,6 +60,7 @@ class App extends React.Component {
 			<>
 				<div className="input-btn">
 					<input
+						placeholder={`Enter Github User Id`}
 						value={this.state.newUser}
 						onChange={this.handleChange}
 					/>
@@ -73,7 +68,6 @@ class App extends React.Component {
 				</div>
 				<h1>{`Github User Id - ${this.state.newUser}`}</h1>
 				<div className="container-user">
-					{/* <UserCard userInfo={this.state.userInfo} /> */}
 					{this.state.userInfo.map((user) => {
 						return (
 							<div key={user.id} className="user-img-info">
@@ -120,12 +114,24 @@ class App extends React.Component {
 											Following:{" "}
 											{user.following}
 										</div>
+
 										<div className="followers">
 											Followers:{" "}
 											{user.followers}
 										</div>
 									</div>
 								</div>
+								<h2>
+									Github Contributions in the Last
+									Year
+								</h2>
+								<div className="github-graph">
+									<img
+										className="graph"
+										src={`https://grass-graph.moshimo.works/images/${user.login}.png`}
+									/>
+								</div>
+
 								<Followers
 									userInfo={this.state.userInfo}
 									user={this.state.user}

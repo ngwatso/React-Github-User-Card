@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { BrowserRouter as Router } from "react-router-dom";
-
-// const Followers = (props) => {
-
 class Followers extends React.Component {
 	constructor() {
 		super();
@@ -22,25 +19,14 @@ class Followers extends React.Component {
 			.catch((err) => console.error(`FOLLOWERS NOT FOUND`, err));
 	}
 
-	// handleChanges = (e) => {
-	// 	this.setState({ followers: e.target.value });
-	// };
-
-	// handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	this.props.newUser(this.state.followers);
-	// };
-
 	render() {
 		console.log("props", this.props.user, this.props.newUser, this.props);
-		// console.log("state", this.state);react app not updating
+		console.log("followers", this.props.userInfo);
 		return (
 			<>
 				<h2>Followers</h2>
 
 				<div className="container-follower">
-					{/* {props.userInfo.map((follower) => { */}
-
 					{this.state.followers.map((follower) => {
 						return (
 							<div

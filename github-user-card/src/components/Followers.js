@@ -3,17 +3,20 @@ import axios from "axios";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // const Followers = (props) => {
+
 class Followers extends React.Component {
 	constructor() {
 		super();
 		this.state = { followers: [] };
 	}
 
-	// // TODO Mount component
+	// TODO Mount component
 	componentDidMount() {
-		axios.get(`https://api.github.com/ngwatso/followers`)
+		axios.get(
+			`https://api.github.com/users/${this.props.newUser}/followers`
+		)
 			.then((res) => {
-				console.log(`NW: Followers.js: CDM: res:`, res.data);
+				console.log(`NW: Followers.js: CDM: res:`, res.data.login);
 				this.setState({ followers: res.data });
 			})
 			.catch((err) => console.error(`FOLLOWERS NOT FOUND`, err));
@@ -29,6 +32,7 @@ class Followers extends React.Component {
 	// };
 
 	render() {
+		console.log("props", this.props.user, this.props.newUser, this.props);
 		return (
 			<>
 				<h2>Followers</h2>

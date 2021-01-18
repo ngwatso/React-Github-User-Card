@@ -14,7 +14,7 @@ class App extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { userInfo: [], user: "ngwatso", newUser: "ngwatso" };
+		this.state = { userInfo: [], user: "", newUser: "" };
 		// this.state = { userInfo: [] };
 	}
 
@@ -57,6 +57,7 @@ class App extends React.Component {
 
 	// TODO Click handler
 	handleClick = (e) => {
+		e.preventDefault();
 		this.setState({ user: this.state.newUser });
 	};
 
@@ -118,7 +119,11 @@ class App extends React.Component {
 							</div>
 						);
 					})}
-					<Followers />
+					<Followers
+						userInfo={this.state.userInfo}
+						user={this.state.user}
+						newUser={this.state.newUser}
+					/>
 				</div>
 			</>
 		);

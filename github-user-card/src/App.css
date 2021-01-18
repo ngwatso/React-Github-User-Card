@@ -18,6 +18,11 @@ img {
 a {
 	text-decoration: none;
 	color: #a0522d;
+	cursor: pointer;
+}
+
+a:hover {
+	color: white;
 }
 
 h1,
@@ -41,9 +46,10 @@ h1 {
 
 .user-img-info {
 	display: flex;
-	flex-flow: nowrap;
+	flex-flow: column nowrap;
 	justify-content: center;
-	width: 45%;
+	width: 100%;
+	/* width: 45%; */
 	/* border: 1px solid brown; */
 }
 
@@ -106,4 +112,49 @@ h1 {
 	border-radius: 5%;
 	background-color: #e4e5c3;
 	box-shadow: 10px 13px 8px 1px #888888;
+}
+
+.user-section {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	width: 45%;
+}
+
+.input-btn {
+	/* border: 1px solid gray; */
+	margin: 0 auto;
+	width: 15%;
+	padding: 0.5% 2%;
+	display: flex;
+	justify-content: space-between;
+}
+
+input {
+	width: 65%;
+	background-color: #e4e5c3;
+	border: 2px solid #b8860b;
+	border-radius: 5%;
+	color: #a0522d;
+	font-size: 1rem;
+	box-shadow: 5px 8px 8px 1px #888888;
+	font-family: "Architects Daughter", cursive;
+}
+
+button {
+	/* width: 65%; */
+	background-color: #e4e5c3;
+	border: 2px solid #b8860b;
+	border-radius: 5%;
+	color: #a0522d;
+	font-size: 1rem;
+	box-shadow: 5px 8px 8px 1px #888888;
+	cursor: pointer;
+	/* font-family: "Architects Daughter", cursive; */
+}
+
+button:hover {
+	background-color: #b8860b;
+	border: #a0522d;
+	color: #e4e5c3;
 }

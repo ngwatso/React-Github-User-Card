@@ -28,14 +28,16 @@ class Followers extends React.Component {
 
 	// handleSubmit = (e) => {
 	// 	e.preventDefault();
-	// 	this.props.userInfo(this.state.followers);
+	// 	this.props.newUser(this.state.followers);
 	// };
 
 	render() {
 		console.log("props", this.props.user, this.props.newUser, this.props);
+		// console.log("state", this.state);react app not updating
 		return (
 			<>
 				<h2>Followers</h2>
+
 				<div className="container-follower">
 					{/* {props.userInfo.map((follower) => { */}
 

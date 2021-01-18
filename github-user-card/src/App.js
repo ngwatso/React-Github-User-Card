@@ -14,7 +14,7 @@ class App extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { userInfo: [], user: "", newUser: "" };
+		this.state = { userInfo: [], user: "ngwatso", newUser: "ngwatso" };
 		// this.state = { userInfo: [] };
 	}
 
@@ -30,6 +30,19 @@ class App extends React.Component {
 			})
 			.catch((err) => console.error(`ERROR RETRIEVING DATA`, err));
 	}
+
+	// TODO Change handler
+	handleChange = (e) => {
+		this.setState({
+			newUser: e.target.value,
+		});
+	};
+
+	// TODO Click handler
+	handleClick = (e) => {
+		// e.preventDefault();
+		this.setState({ user: this.state.newUser });
+	};
 
 	// TODO Update component on state change
 	componentDidUpdate(prevProps, prevState) {
@@ -48,82 +61,79 @@ class App extends React.Component {
 		}
 	}
 
-	// TODO Change handler
-	handleChange = (e) => {
-		this.setState({
-			newUser: e.target.value,
-		});
-	};
-
-	// TODO Click handler
-	handleClick = (e) => {
-		e.preventDefault();
-		this.setState({ user: this.state.newUser });
-	};
-
 	render() {
 		return (
 			<>
-				<h1>{`Github User Id - ${this.state.newUser}`}</h1>
-				<div className="container-user">
+				<div className="input-btn">
 					<input
 						value={this.state.newUser}
 						onChange={this.handleChange}
 					/>
 					<button onClick={this.handleClick}>Find User</button>
+				</div>
+				<h1>{`Github User Id - ${this.state.newUser}`}</h1>
+				<div className="container-user">
 					{/* <UserCard userInfo={this.state.userInfo} /> */}
 					{this.state.userInfo.map((user) => {
 						return (
 							<div key={user.id} className="user-img-info">
-								<div className="user-img">
-									<img
-										src={user.avatar_url}
-										alt={user.login}
-									/>
+								<div className="user-section">
+									<div className="user-img">
+										<img
+											src={user.avatar_url}
+											alt={user.login}
+										/>
+									</div>
+									<div className="user-info">
+										<div className="name">
+											Name: {user.name}
+										</div>
+										<div className="location">
+											Location: {user.location}
+										</div>
+										<div className="bio">
+											Bio: {user.bio}
+										</div>
+										<div className="user-home">
+											{`${user.login}'s Homepage: `}
+											<Router>
+												<a
+													href={
+														user.html_url
+													}
+												>
+													{user.html_url}
+												</a>
+											</Router>
+										</div>
+										<div className="user-repos">
+											{`${user.login}'s Repositories: `}
+											<Router>
+												<a
+													href={`https://github.com/${user.login}?tab=repositories`}
+												>
+													{`https://github.com/${user.login}/repos`}
+												</a>
+											</Router>
+										</div>
+										<div className="following">
+											Following:{" "}
+											{user.following}
+										</div>
+										<div className="followers">
+											Followers:{" "}
+											{user.followers}
+										</div>
+									</div>
 								</div>
-								<div className="user-info">
-									<div className="name">
-										Name: {user.name}
-									</div>
-									<div className="location">
-										Location: {user.location}
-									</div>
-									<div className="bio">
-										Bio: {user.bio}
-									</div>
-									<div className="user-home">
-										{`${user.login}'s Homepage: `}
-										<Router>
-											<a href={user.html_url}>
-												{user.html_url}
-											</a>
-										</Router>
-									</div>
-									<div className="user-repos">
-										{`${user.login}'s Repositories: `}
-										<Router>
-											<a
-												href={`https://github.com/${user.login}?tab=repositories`}
-											>
-												{`https://github.com/${user.login}/repos`}
-											</a>
-										</Router>
-									</div>
-									<div className="following">
-										Following: {user.following}
-									</div>
-									<div className="followers">
-										Followers: {user.followers}
-									</div>
-								</div>
+								<Followers
+									userInfo={this.state.userInfo}
+									user={this.state.user}
+									newUser={this.state.newUser}
+								/>
 							</div>
 						);
 					})}
-					<Followers
-						userInfo={this.state.userInfo}
-						user={this.state.user}
-						newUser={this.state.newUser}
-					/>
 				</div>
 			</>
 		);
